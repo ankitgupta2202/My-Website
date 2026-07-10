@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disha — Course & Career Guidance for Students and Parents</title>
+<meta name="description" content="Find the right course and career path — matched to your interests, strengths, and where the job market is headed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   DISHA — Design System (single-file, all pages combined)
+   ========================================================= */
+
+:root{
+  --primary:#2E4CE0;
+  --primary-dark:#1E36AD;
+  --primary-tint:#EEF1FE;
+  --primary-tint-2:#E2E7FC;
+
+  --ink:#101828;
+  --ink-soft:#475467;
+  --muted:#667085;
+
+  --bg:#FFFFFF;
+  --bg-soft:#F8F9FC;
+  --surface:#FFFFFF;
+  --border:#E4E7EC;
+  --border-soft:#EEF0F4;
+
+  --amber:#DC8A1E;
+  --amber-tint:#FCF3E3;
+  --teal:#0F8E82;
+  --teal-tint:#E7F5F3;
+
+  --navy-deep:#0B1230;
+  --navy-deep-alt:#141B3D;
+  --on-dark:#E7E9F5;
+  --on-dark-soft:rgba(231,233,245,0.68);
+  --line-dark:rgba(231,233,245,0.14);
+
+  --radius-sm:8px;
+  --radius-md:12px;
+  --radius-lg:18px;
+  --shadow-xs:0 1px 2px rgba(16,24,40,0.05);
+  --shadow-sm:0 1px 3px rgba(16,24,40,0.08), 0 1px 2px rgba(16,24,40,0.04);
+  --shadow-md:0 6px 16px rgba(16,24,40,0.08);
+  --shadow-lg:0 20px 45px rgba(16,24,40,0.12);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter', sans-serif;
+  font-weight:400;
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  font-size:16px;
+}
+img,svg.icon{display:block;}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+button{font-family:inherit;}
+
+h1,h2,h3,h4{font-family:'Sora', sans-serif;color:var(--ink);}
+h1{font-weight:700;line-height:1.12;letter-spacing:-0.02em;}
+h2{font-weight:700;line-height:1.16;letter-spacing:-0.015em;}
+h3{font-weight:600;line-height:1.22;letter-spacing:-0.008em;}
+h4{font-weight:600;line-height:1.3;letter-spacing:-0.003em;}
+p{color:var(--ink-soft);font-weight:400;}
+strong,b{font-weight:600;}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;}
+
+.icon{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+
+.eyebrow{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--primary);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.eyebrow.on-dark{color:#8FA0FF;}
+.eyebrow::before{content:"";width:16px;height:1.5px;background:currentColor;display:inline-block;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+section{position:relative;}
+.light-sec{padding:96px 0;}
+.dark-sec{padding:96px 0;background:var(--navy-deep);color:var(--on-dark);}
+.dark-sec p{color:var(--on-dark-soft);}
+.dark-sec h2,.dark-sec h3,.dark-sec h4{color:#fff;}
+
+/* ---------- PAGE ROUTING ---------- */
+.page-section{display:none;}
+.page-section.active{display:block;}
+
+/* ---------- NAV ---------- */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+nav.wrap{display:flex;align-items:center;justify-content:space-between;height:74px;}
+.logo{display:flex;align-items:center;gap:11px;cursor:pointer;}
+.logo .mark{
+  width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(155deg, var(--primary), var(--primary-dark));
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  box-shadow:var(--shadow-sm);
+}
+.logo .mark .icon{width:19px;height:19px;stroke:#fff;stroke-width:1.9;}
+.logo-text{display:flex;flex-direction:column;line-height:1.15;}
+.logo-name{font-family:'Sora',sans-serif;font-weight:700;font-size:1.28rem;color:var(--ink);}
+.logo-tagline{font-family:'IBM Plex Mono',monospace;font-size:0.56rem;letter-spacing:0.09em;text-transform:uppercase;font-weight:600;color:var(--primary);margin-top:1px;}
+.logo-tagline.on-dark{color:#8FA0FF;}
+
+.nav-links{display:flex;gap:32px;align-items:center;}
+.nav-links a:not(.btn){font-size:0.93rem;font-weight:500;color:var(--ink-soft);transition:color .15s;}
+.nav-links a:not(.btn):hover{color:var(--ink);}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+.nav-toggle span{display:block;width:21px;height:2px;background:var(--ink);margin:5px 0;transition:.25s;border-radius:2px;}
+
+/* ---------- BUTTONS ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 22px;border-radius:var(--radius-sm);
+  font-size:0.92rem;font-weight:600;font-family:'Inter',sans-serif;
+  transition:transform .15s, box-shadow .15s, background .15s, border-color .15s, color .15s;
+  border:1px solid transparent;cursor:pointer;white-space:nowrap;
+}
+.btn .icon{width:16px;height:16px;}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:var(--shadow-sm);}
+.btn-primary:hover{background:var(--primary-dark);box-shadow:var(--shadow-md);transform:translateY(-1px);}
+.btn-secondary{background:#fff;color:var(--ink);border-color:var(--border);}
+.btn-secondary:hover{border-color:var(--ink-soft);background:var(--bg-soft);}
+.btn-ghost-dark{border-color:rgba(231,233,245,0.28);color:var(--on-dark);}
+.btn-ghost-dark:hover{border-color:#fff;background:rgba(231,233,245,0.08);}
+.btn-lg{padding:14px 28px;font-size:0.98rem;}
+.btn-full{width:100%;}
+.btn:disabled{opacity:0.6;cursor:not-allowed;}
+
+/* ---------- HERO ---------- */
+.hero{
+  background:linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 100%);
+  padding:80px 0 0;
+  overflow:hidden;
+  position:relative;
+  border-bottom:1px solid var(--border-soft);
+}
+.hero::before{
+  content:"";position:absolute;top:-120px;right:-120px;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle, rgba(46,76,224,0.09), transparent 68%);
+  pointer-events:none;
+}
+.hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;position:relative;}
+.hero h1{font-size:clamp(2.2rem, 4vw, 3.2rem);margin:18px 0 20px;color:var(--ink);}
+.hero h1 .accent{color:var(--primary);}
+.hero p.lede{font-size:1.08rem;color:var(--ink-soft);max-width:46ch;margin-bottom:30px;}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap;}
+
+.hero-stats{display:flex;margin-top:56px;border-top:1px solid var(--border);position:relative;}
+.hero-stats div{flex:1;padding:20px 20px 0 0;}
+.hero-stats .num{font-family:'Sora',sans-serif;font-size:1.7rem;font-weight:700;color:var(--ink);}
+.hero-stats .label{font-size:0.8rem;color:var(--muted);margin-top:3px;}
+
+.hero-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:26px;box-shadow:var(--shadow-lg);position:relative;
+}
+.hero-card .hc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.hero-card .hc-head .eyebrow{margin:0;}
+.hero-card .live-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block;box-shadow:0 0 0 3px var(--teal-tint);}
+.path-row{display:flex;align-items:center;gap:12px;font-size:0.89rem;color:var(--ink-soft);padding:12px 0;border-bottom:1px solid var(--border-soft);}
+.path-row:last-child{border-bottom:none;}
+.path-row .tag{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.path-row .tag .icon{width:15px;height:15px;}
+.path-row.c1 .tag{background:var(--primary-tint);color:var(--primary);}
+.path-row.c2 .tag{background:var(--teal-tint);color:var(--teal);}
+.path-row.c3 .tag{background:var(--amber-tint);color:var(--amber);}
+.path-row b{color:var(--ink);font-weight:600;}
+
+/* ---------- SECTION HEADS ---------- */
+.sec-head{max-width:640px;margin-bottom:48px;}
+.sec-head h2{font-size:clamp(1.6rem,2.8vw,2.2rem);margin-top:12px;}
+.sec-head p{margin-top:12px;font-size:1rem;}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+
+/* ---------- COMPASS ---------- */
+.compass-section{background:var(--bg-soft);}
+.compass-layout{display:grid;grid-template-columns:440px 1fr;gap:52px;align-items:start;}
+.wheel{position:relative;width:400px;height:400px;margin:0 auto;}
+.wheel-hub{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:144px;height:144px;border-radius:50%;
+  background:linear-gradient(155deg, var(--primary), var(--primary-dark));color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:14px;box-shadow:var(--shadow-lg);
+}
+.wheel-hub .hub-label{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;letter-spacing:0.08em;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:6px;}
+.wheel-hub .hub-text{font-family:'Sora',sans-serif;font-size:0.92rem;line-height:1.25;font-weight:600;}
+.wheel-node{position:absolute;top:50%;left:50%;width:112px;text-align:center;cursor:pointer;}
+.wheel-node .node-circle{
+  width:74px;height:74px;border-radius:50%;
+  background:#fff;border:1.5px solid var(--border);color:var(--primary);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 8px;
+  transition:transform .2s, border-color .2s, background .2s, box-shadow .2s, color .2s;
+}
+.wheel-node .node-circle .icon{width:24px;height:24px;}
+.wheel-node .node-label{font-size:0.76rem;font-weight:600;color:var(--ink-soft);transition:color .2s;}
+.wheel-node:hover .node-circle, .wheel-node.active .node-circle{
+  transform:scale(1.08);border-color:var(--primary);background:var(--primary);color:#fff;
+  box-shadow:0 10px 22px rgba(46,76,224,0.28);
+}
+.wheel-node.active .node-label{color:var(--ink);font-weight:700;}
+.wheel-node[data-i="0"]{transform:translate(calc(-50% + 0px), calc(-50% - 170px));}
+.wheel-node[data-i="1"]{transform:translate(calc(-50% + 147px), calc(-50% - 85px));}
+.wheel-node[data-i="2"]{transform:translate(calc(-50% + 147px), calc(-50% + 85px));}
+.wheel-node[data-i="3"]{transform:translate(calc(-50% + 0px), calc(-50% + 170px));}
+.wheel-node[data-i="4"]{transform:translate(calc(-50% - 147px), calc(-50% + 85px));}
+.wheel-node[data-i="5"]{transform:translate(calc(-50% - 147px), calc(-50% - 85px));}
+
+.compass-result{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:34px;min-height:400px;box-shadow:var(--shadow-sm);}
+.compass-result .result-tag{display:inline-flex;align-items:center;gap:6px;background:var(--primary-tint);color:var(--primary-dark);font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;padding:6px 12px;border-radius:100px;margin-bottom:16px;font-weight:600;}
+.compass-result h3{font-size:1.5rem;font-weight:700;margin-bottom:8px;}
+.compass-result .result-sub{margin-bottom:24px;font-size:0.95rem;}
+.career-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.career-item{border:1px solid var(--border);border-radius:var(--radius-md);padding:15px 16px;background:var(--bg-soft);transition:box-shadow .15s, border-color .15s;}
+.career-item:hover{box-shadow:var(--shadow-sm);border-color:var(--primary-tint-2);}
+.career-item .c-title{font-weight:600;font-size:0.93rem;margin-bottom:4px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.career-item .badge{font-family:'IBM Plex Mono',monospace;font-size:0.58rem;letter-spacing:0.05em;text-transform:uppercase;background:var(--amber-tint);color:var(--amber);padding:2px 7px;border-radius:100px;font-weight:600;}
+.career-item .c-course{font-size:0.82rem;color:var(--muted);}
+.compass-hint{color:var(--muted);font-size:0.92rem;text-align:center;padding-top:110px;}
+.compass-cta{margin-top:22px;padding-top:20px;border-top:1px solid var(--border-soft);display:none;}
+.compass-cta.show{display:block;}
+
+/* ---------- FIELD GRID ---------- */
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.field-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-md);padding:24px 20px;transition:transform .18s, box-shadow .18s, border-color .18s;}
+.field-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--border);}
+.field-card .ic{width:44px;height:44px;border-radius:10px;background:var(--primary-tint);color:var(--primary);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.field-card .ic .icon{width:21px;height:21px;}
+.field-card:nth-child(4n+2) .ic{background:var(--teal-tint);color:var(--teal);}
+.field-card:nth-child(4n+3) .ic{background:var(--amber-tint);color:var(--amber);}
+.field-card:nth-child(4n+4) .ic{background:var(--primary-tint-2);color:var(--primary-dark);}
+.field-card h4{font-size:1.02rem;margin-bottom:6px;}
+.field-card p{font-size:0.86rem;}
+
+/* ---------- TABS ---------- */
+.tabs{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap;}
+.tab-btn{padding:10px 18px;border-radius:var(--radius-sm);border:1px solid var(--border);font-size:0.88rem;font-weight:600;color:var(--ink-soft);background:#fff;cursor:pointer;transition:.15s;}
+.tab-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.tab-panel{display:none;}
+.tab-panel.active{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.stream-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-md);padding:20px;border-left:3px solid var(--primary);}
+.stream-card:nth-child(3n+2){border-left-color:var(--teal);}
+.stream-card:nth-child(3n+3){border-left-color:var(--amber);}
+.stream-card h4{font-size:0.98rem;margin-bottom:8px;}
+.stream-card li{font-size:0.84rem;color:var(--ink-soft);padding:3px 0;position:relative;padding-left:14px;}
+.stream-card li::before{content:"—";position:absolute;left:0;color:var(--muted);}
+
+/* ---------- PARENTS / DARK ---------- */
+.parents-layout{display:grid;grid-template-columns:0.9fr 1.1fr;gap:60px;align-items:center;}
+.parent-points{display:flex;flex-direction:column;gap:22px;}
+.parent-point{display:flex;gap:16px;}
+.parent-point .pn{font-family:'IBM Plex Mono',monospace;font-size:0.82rem;color:var(--on-dark);border:1px solid rgba(231,233,245,0.28);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.parent-point h4{color:#fff;font-size:1rem;margin-bottom:4px;}
+.parent-point p{font-size:0.89rem;}
+.parent-card{background:var(--navy-deep-alt);border:1px solid var(--line-dark);border-radius:var(--radius-lg);padding:32px;}
+.parent-card .q{font-family:'Sora',sans-serif;font-size:1.08rem;color:#fff;line-height:1.55;margin-bottom:18px;font-weight:500;}
+.parent-card .who{font-size:0.83rem;color:var(--on-dark-soft);}
+.stars{display:flex;gap:3px;margin-bottom:16px;color:var(--amber);}
+.stars .icon{width:15px;height:15px;fill:currentColor;stroke:none;}
+
+/* ---------- PROCESS ---------- */
+.process-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.process-step{padding:32px 28px;border-right:1px solid var(--border);}
+.process-step:last-child{border-right:none;}
+.process-step .pnum{width:32px;height:32px;border-radius:8px;background:var(--primary-tint);color:var(--primary);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.process-step .pnum .icon{width:16px;height:16px;}
+.process-step h4{font-size:1.08rem;margin-bottom:8px;}
+.process-step p{font-size:0.9rem;}
+
+/* ---------- TESTIMONIALS ---------- */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.test-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-md);padding:24px;}
+.test-card p{font-size:0.92rem;color:var(--ink);margin-bottom:16px;line-height:1.6;}
+.test-card .who{display:flex;align-items:center;gap:12px;}
+.test-card .avatar{width:38px;height:38px;border-radius:50%;background:var(--primary-tint);color:var(--primary-dark);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:700;font-size:0.85rem;}
+.test-card .name{font-size:0.87rem;font-weight:600;}
+.test-card .role{font-size:0.78rem;color:var(--muted);}
+
+/* ---------- CTA BAND ---------- */
+.cta-band{background:var(--primary);padding:56px 0;}
+.cta-band .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.cta-band h3{font-size:1.55rem;font-weight:700;color:#fff;max-width:520px;}
+.cta-band p{color:rgba(255,255,255,0.78);margin-top:6px;font-size:0.92rem;}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--navy-deep);color:var(--on-dark-soft);padding:56px 0 28px;}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px;}
+.foot-grid h5{color:#fff;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px;}
+.foot-grid li{padding:5px 0;font-size:0.88rem;}
+.foot-grid li a:hover{color:#fff;}
+.foot-bottom{border-top:1px solid var(--line-dark);padding-top:22px;display:flex;justify-content:space-between;font-size:0.78rem;flex-wrap:wrap;gap:10px;}
+
+/* ---------- FORMS (booking page) ---------- */
+.form-page-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;align-items:start;}
+.form-shell{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px;box-shadow:var(--shadow-md);}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+.field label{font-size:0.85rem;font-weight:600;color:var(--ink);}
+.field .hint{font-size:0.78rem;color:var(--muted);}
+.field input, .field select, .field textarea{
+  padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);
+  font-family:'Inter',sans-serif;font-size:0.92rem;color:var(--ink);background:#fff;
+  transition:border-color .15s, box-shadow .15s;
+}
+.field input:focus, .field select:focus, .field textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-tint);outline:none;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.chip-group{display:flex;gap:8px;flex-wrap:wrap;}
+.chip{padding:9px 16px;border:1px solid var(--border);border-radius:100px;font-size:0.85rem;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:.15s;background:#fff;}
+.chip.selected{background:var(--primary);border-color:var(--primary);color:#fff;}
+.slot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.slot{padding:10px;border:1px solid var(--border);border-radius:var(--radius-sm);text-align:center;font-size:0.83rem;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:.15s;}
+.slot.selected{background:var(--primary);border-color:var(--primary);color:#fff;}
+.slot.disabled{opacity:0.4;cursor:not-allowed;text-decoration:line-through;}
+.side-note{background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-lg);padding:26px;}
+.side-note .sn-row{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border-soft);}
+.side-note .sn-row:last-child{border-bottom:none;}
+.side-note .sn-row .icon{color:var(--primary);margin-top:2px;}
+.side-note .sn-row h5{font-size:0.9rem;margin-bottom:2px;}
+.side-note .sn-row p{font-size:0.83rem;}
+.progress-track{display:flex;align-items:center;gap:8px;margin-bottom:36px;}
+.progress-step{display:flex;align-items:center;gap:8px;}
+.progress-dot{width:26px;height:26px;border-radius:50%;background:var(--border);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;font-family:'IBM Plex Mono',monospace;}
+.progress-dot.done{background:var(--primary);color:#fff;}
+.progress-line{width:36px;height:1.5px;background:var(--border);}
+.progress-label{font-size:0.82rem;color:var(--muted);font-weight:500;}
+.progress-label.active{color:var(--ink);font-weight:600;}
+.form-error{font-size:0.8rem;color:#D14343;margin-top:-12px;margin-bottom:14px;display:none;}
+.form-error.show{display:block;}
+
+/* ---------- BREADCRUMB / PAGE HERO (subpages) ---------- */
+.page-hero{background:var(--bg-soft);border-bottom:1px solid var(--border);padding:46px 0 40px;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--muted);margin-bottom:16px;}
+.breadcrumb a:hover{color:var(--primary);}
+.page-hero h1{font-size:clamp(1.7rem,3vw,2.3rem);}
+.page-hero p{margin-top:10px;max-width:56ch;}
+
+/* ---------- CONFIRMATION PAGE ---------- */
+.confirm-wrap{max-width:640px;margin:0 auto;text-align:center;padding:90px 32px 100px;}
+.confirm-icon{width:78px;height:78px;border-radius:50%;background:var(--teal-tint);color:var(--teal);display:flex;align-items:center;justify-content:center;margin:0 auto 26px;}
+.confirm-icon .icon{width:38px;height:38px;}
+.confirm-wrap h1{font-size:clamp(1.7rem,3vw,2.2rem);margin-bottom:14px;}
+.confirm-wrap > p{max-width:48ch;margin:0 auto 40px;font-size:1rem;}
+.confirm-card{background:var(--bg-soft);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;text-align:left;margin-bottom:32px;}
+.confirm-card .cc-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:0.9rem;}
+.confirm-card .cc-row:last-child{border-bottom:none;}
+.confirm-card .cc-row .k{color:var(--muted);}
+.confirm-card .cc-row .v{font-weight:600;color:var(--ink);}
+.next-steps{text-align:left;display:flex;flex-direction:column;gap:16px;margin-bottom:40px;}
+.next-steps .ns-row{display:flex;gap:14px;}
+.next-steps .ns-num{width:26px;height:26px;border-radius:50%;background:var(--primary-tint);color:var(--primary);font-family:'IBM Plex Mono',monospace;font-size:0.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.next-steps h5{font-size:0.92rem;margin-bottom:2px;}
+.next-steps p{font-size:0.85rem;}
+
+/* ---------- SCROLL REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease, transform .55s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:920px){
+  .nav-links{position:fixed;top:74px;left:0;right:0;background:#fff;flex-direction:column;padding:18px 32px 28px;border-bottom:1px solid var(--border);gap:16px;transform:translateY(-140%);transition:transform .25s;align-items:flex-start;}
+  .nav-links.open{transform:translateY(0);}
+  .nav-toggle{display:block;}
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-stats{flex-wrap:wrap;}
+  .hero-stats div{flex:1 1 45%;}
+  .compass-layout{grid-template-columns:1fr;}
+  .wheel{transform:scale(0.9);}
+  .grid-4{grid-template-columns:repeat(2,1fr);}
+  .tab-panel.active{grid-template-columns:1fr;}
+  .parents-layout{grid-template-columns:1fr;gap:36px;}
+  .process-row{grid-template-columns:1fr;}
+  .process-step{border-right:none;border-bottom:1px solid var(--border);}
+  .test-grid{grid-template-columns:1fr;}
+  .foot-grid{grid-template-columns:1fr 1fr;}
+  .career-list{grid-template-columns:1fr;}
+  .field-row{grid-template-columns:1fr;}
+  .slot-grid{grid-template-columns:repeat(2,1fr);}
+  .form-page-grid{grid-template-columns:1fr !important;}
+}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important; scroll-behavior:auto !important;}
+  .reveal{opacity:1;transform:none;}
+}
+</style>
+</head>
+<body>
+
+<svg style="display:none" aria-hidden="true">
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.2 7.8 13.8 13.8 7.8 16.2 10.2 10.2 16.2 7.8"/></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="15" x2="4" y2="15"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="15" x2="23" y2="15"/></symbol>
+<symbol id="i-trend" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 6"/><polyline points="14 6 21 6 21 13"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-7.2-4.4-9.6-9.1C.7 8 3.2 3.5 7.3 3.5c2 0 3.6 1 4.7 2.9 1.1-1.9 2.7-2.9 4.7-2.9 4.1 0 6.6 4.5 4.9 8.4C19.2 16.6 12 21 12 21z"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M2 5c2-1 5-1 7 0v14c-2-1-5-1-7 0Z"/><path d="M22 5c-2-1-5-1-7 0v14c2-1 5-1 7 0Z"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3c2.4 2.5 3.8 6 3.8 9s-1.4 6.5-3.8 9c-2.4-2.5-3.8-6-3.8-9s1.4-6.5 3.8-9Z"/></symbol>
+<symbol id="i-landmark" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="5" y1="21" x2="5" y2="10"/><line x1="9" y1="21" x2="9" y2="10"/><line x1="15" y1="21" x2="15" y2="10"/><line x1="19" y1="21" x2="19" y2="10"/><polygon points="12 2 21 8 3 8"/></symbol>
+<symbol id="i-film" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="7" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="17" y2="20"/><line x1="2" y1="9" x2="7" y2="9"/><line x1="2" y1="14" x2="7" y2="14"/><line x1="17" y1="9" x2="22" y2="9"/><line x1="17" y1="14" x2="22" y2="14"/></symbol>
+<symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 4 13C4 7 12 3 20 3c0 8-4 15-11 15Z"/><path d="M4 20c4-6 8-9 14-13"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8 12.3 10.8 15.2 16 9.2"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="8" y1="2" x2="8" y2="7"/><line x1="16" y1="2" x2="16" y2="7"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2 6 12 13 22 6"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M17 21c-8.3 0-15-6.7-15-15 0-1 .8-2 1.8-2h3l1.7 4.6-2 1.9c1.2 2.9 3.5 5.2 6.4 6.4l1.9-2 4.6 1.7v3c0 1-.9 1.8-1.9 1.8Z"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9.5 16.5 14 18.5 21 12 17 5.5 21 7.5 14 2 9.5 9 9"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6Z"/><polyline points="9 12 11.5 14.5 15.5 9.5"/></symbol>
+</svg>
+
+<header>
+  <nav class="wrap">
+    <a href="#/" class="logo">
+      <span class="mark"><svg class="icon"><use href="#i-compass"/></svg></span>
+      <span class="logo-text">
+        <span class="logo-name">Disha</span>
+        <span class="logo-tagline">Follow Your Direction</span>
+      </span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#compass">Interest Finder</a></li>
+      <li><a href="#careers">Careers</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#parents">For Parents</a></li>
+      <li><a href="#/book" class="btn btn-primary">Book Free Session</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- ============================= PAGE 1: HOME ============================= -->
+<main id="page-home" class="page-section active">
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">For students & parents, class 9–12</p>
+        <h1>Choose a course with <span class="accent">confidence</span>, not guesswork.</h1>
+        <p class="lede">Disha matches your interests to real careers and the exact courses that lead there — built around where the job market is headed, not just where it's been.</p>
+        <div class="btn-row">
+          <a href="#compass" class="btn btn-primary btn-lg">Find your direction <svg class="icon"><use href="#i-arrow"/></svg></a>
+          <a href="#/book" class="btn btn-secondary btn-lg">Talk to a counsellor</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="num">120+</div><div class="label">careers mapped to courses</div></div>
+          <div><div class="num">60+</div><div class="label">degree & diploma paths</div></div>
+          <div><div class="num">15</div><div class="label">future-ready fields tracked</div></div>
+          <div><div class="num">4,800+</div><div class="label">free sessions booked</div></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hc-head">
+          <p class="eyebrow"><span class="live-dot"></span> Exploring right now</p>
+        </div>
+        <div class="path-row c1"><span class="tag"><svg class="icon"><use href="#i-edit"/></svg></span> <span><b>Ritika</b>, Class 11 — comparing B.Des vs B.Arch</span></div>
+        <div class="path-row c2"><span class="tag"><svg class="icon"><use href="#i-cpu"/></svg></span> <span><b>Aman</b>, Class 12 — Data Science vs CA path</span></div>
+        <div class="path-row c3"><span class="tag"><svg class="icon"><use href="#i-book"/></svg></span> <span><b>Fatima</b>, Class 10 — Science or Commerce</span></div>
+        <div class="path-row c1"><span class="tag"><svg class="icon"><use href="#i-landmark"/></svg></span> <span><b>Dev</b>, Class 12 — UPSC-track BA options</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light-sec compass-section" id="compass">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Interest compass</p>
+      <h2>Not sure what fits you? Point to what excites you.</h2>
+      <p>Tap a direction below. We'll show you the careers it opens up, the courses that get you there, and why it's worth considering for the years ahead.</p>
+    </div>
+    <div class="compass-layout">
+      <div class="wheel reveal" id="wheel">
+        <div class="wheel-hub"><div class="hub-label">Your direction</div><div class="hub-text">Tap an area to begin</div></div>
+        <div class="wheel-node" data-i="0" data-key="tech"><div class="node-circle"><svg class="icon"><use href="#i-cpu"/></svg></div><div class="node-label">Science & Tech</div></div>
+        <div class="wheel-node" data-i="1" data-key="commerce"><div class="node-circle"><svg class="icon"><use href="#i-trend"/></svg></div><div class="node-label">Commerce & Business</div></div>
+        <div class="wheel-node" data-i="2" data-key="health"><div class="node-circle"><svg class="icon"><use href="#i-heart"/></svg></div><div class="node-label">Healthcare & Life Sciences</div></div>
+        <div class="wheel-node" data-i="3" data-key="design"><div class="node-circle"><svg class="icon"><use href="#i-edit"/></svg></div><div class="node-label">Design & Creativity</div></div>
+        <div class="wheel-node" data-i="4" data-key="humanities"><div class="node-circle"><svg class="icon"><use href="#i-book"/></svg></div><div class="node-label">Arts, Humanities & Law</div></div>
+        <div class="wheel-node" data-i="5" data-key="public"><div class="node-circle"><svg class="icon"><use href="#i-globe"/></svg></div><div class="node-label">Public Service & Impact</div></div>
+      </div>
+      <div class="compass-result reveal" id="resultPanel">
+        <p class="compass-hint">Your matched careers and courses will appear here — pick a direction on the wheel to start.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light-sec" id="careers" style="background:#fff;">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Where the demand is heading</p>
+      <h2>Career fields worth planning around</h2>
+      <p>A mix of steady, in-demand paths and fields that are growing fast as India's economy and technology shift.</p>
+    </div>
+    <div class="grid-4">
+      <div class="field-card reveal"><div class="ic"><svg class="icon"><use href="#i-cpu"/></svg></div><h4>AI & Data Science</h4><p>One of the fastest-growing hiring categories across every industry, not just tech companies.</p></div>
+      <div class="field-card reveal"><div class="ic"><svg class="icon"><use href="#i-gear"/></svg></div><h4>Core & Emerging Engineering</h4><p>From civil and mechanical to EV and renewable-energy engineering.</p></div>
+      <div class="field-card reveal"><div class="ic"><svg class="icon"><use href="#i-trend"/></svg></div><h4>Finance & Analytics</h4><p>CA, CFA, investment and business analytics roles with strong long-term demand.</p></div>
+      <div class="field-card reveal"><div class="ic"><svg class="icon"><use href="#i-heart"/></svg></div><h4>Health & Biotech</h4><p>Doctors, allied health professionals, and a fast-growing biotech research sector.</p></div>
+      <div class="field-card reveal"><div class="ic"><svg class="icon"><use href="#i-edit"/></svg></div><h4>UX & Product Design</h4><p>Every app and service now needs designers who understand people, not just pixels.</p></div>
+      <div class="field-card reveal"><div class="ic"><svg class="icon"><use href="#i-landmark"/></svg></div><h4>Civil Services & Policy</h4><p>IAS, IPS, and policy roles for students drawn to public administration.</p></div>
+      <div class="field-card reveal"><div class="ic"><svg class="icon"><use href="#i-leaf"/></svg></div><h4>Climate & Sustainability</h4><p>Environmental science, ESG, and green-tech roles opening up rapidly.</p></div>
+      <div class="field-card reveal"><div class="ic"><svg class="icon"><use href="#i-film"/></svg></div><h4>Media & Content</h4><p>Journalism, film, and content careers reshaped by digital platforms.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="light-sec" id="courses" style="background:var(--bg-soft);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Course explorer</p>
+      <h2>What to study, mapped to where you are</h2>
+      <p>Streams and degrees explained in plain language — pick your stage below.</p>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="after10">After Class 10</button>
+      <button class="tab-btn" data-tab="after12">After Class 12</button>
+      <button class="tab-btn" data-tab="future">Future-Ready Picks</button>
+    </div>
+    <div class="tab-panel active" id="after10">
+      <div class="stream-card"><h4>Science (PCM / PCB)</h4><ul><li>Opens engineering, medicine, architecture, research</li><li>Keeps the widest range of options open post-12th</li><li>Best if you enjoy problem-solving and lab work</li></ul></div>
+      <div class="stream-card"><h4>Commerce</h4><ul><li>Leads to CA, CS, BBA, economics, business analytics</li><li>Good fit if you like numbers, markets, and strategy</li><li>Can still add Maths for finance-heavy careers</li></ul></div>
+      <div class="stream-card"><h4>Humanities / Arts</h4><ul><li>Leads to law, civil services, design, journalism, psychology</li><li>Best for students drawn to people, society, and ideas</li><li>Often underrated for how wide its career map actually is</li></ul></div>
+    </div>
+    <div class="tab-panel" id="after12">
+      <div class="stream-card"><h4>Engineering & Tech</h4><ul><li>B.Tech (CSE, AI/ML, ECE, Mechanical, Civil)</li><li>B.Sc Data Science / Statistics</li><li>Integrated M.Sc in core sciences</li></ul></div>
+      <div class="stream-card"><h4>Medical & Health Sciences</h4><ul><li>MBBS, BDS, BAMS</li><li>B.Sc Nursing, B.Pharm</li><li>Physiotherapy (BPT), Allied Health Sciences</li></ul></div>
+      <div class="stream-card"><h4>Commerce & Management</h4><ul><li>B.Com (Hons), BBA, BMS</li><li>CA / CS / CMA professional tracks</li><li>Economics (Hons)</li></ul></div>
+      <div class="stream-card"><h4>Design & Architecture</h4><ul><li>B.Des (Product, UX, Fashion, Communication)</li><li>B.Arch</li><li>Animation & VFX programs</li></ul></div>
+      <div class="stream-card"><h4>Law & Humanities</h4><ul><li>BA LLB (5-year integrated)</li><li>BA Political Science / Psychology / Journalism</li><li>Social Work (BSW)</li></ul></div>
+      <div class="stream-card"><h4>Public Service Track</h4><ul><li>BA Public Administration</li><li>Any degree + UPSC/State PCS prep</li><li>B.Sc Environmental Science</li></ul></div>
+    </div>
+    <div class="tab-panel" id="future">
+      <div class="stream-card"><h4>AI, ML & Data Science</h4><ul><li>Fastest-growing hiring category across sectors</li><li>Pairs well with almost any core engineering degree</li></ul></div>
+      <div class="stream-card"><h4>Climate & Renewable Energy</h4><ul><li>Environmental engineering, ESG analytics</li><li>Solar & EV-focused specializations</li></ul></div>
+      <div class="stream-card"><h4>Health-Tech & Biotech</h4><ul><li>Biotechnology, genomics, medical devices</li><li>Growing research and industry demand</li></ul></div>
+      <div class="stream-card"><h4>UX, Product & Design Tech</h4><ul><li>Design roles now central to every digital product</li><li>Strong for creatively-minded, detail-oriented students</li></ul></div>
+      <div class="stream-card"><h4>Cybersecurity</h4><ul><li>Rising demand as more services move online</li><li>Good fit alongside a CSE or IT degree</li></ul></div>
+      <div class="stream-card"><h4>FinTech & Business Analytics</h4><ul><li>Blends commerce fundamentals with data skills</li><li>Strong entry point into banking and startups</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-sec" id="parents">
+  <div class="wrap">
+    <div class="parents-layout">
+      <div>
+        <p class="eyebrow on-dark">For parents</p>
+        <h2 style="margin:12px 0 30px;font-size:2rem;">You want certainty. We show you the evidence.</h2>
+        <div class="parent-points">
+          <div class="parent-point reveal"><div class="pn">1</div><div><h4>Grounded in outcomes, not trends</h4><p>Every recommendation is checked against real hiring demand and course reputation — not just what's popular this year.</p></div></div>
+          <div class="parent-point reveal"><div class="pn">2</div><div><h4>Counsellors, not salespeople</h4><p>Our sessions are led by qualified career counsellors — there's no course or college being pushed on you.</p></div></div>
+          <div class="parent-point reveal"><div class="pn">3</div><div><h4>Room for your child's voice</h4><p>We map interest and aptitude together, so the plan reflects what your child is good at and what they actually enjoy.</p></div></div>
+        </div>
+      </div>
+      <div class="parent-card reveal">
+        <div class="stars"><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg></div>
+        <p class="q">"We came in worried our daughter would 'waste a year' figuring things out. Disha's counsellor helped her — and us — see that her interest in design was a real, plannable career, not a phase."</p>
+        <p class="who">Parent of a Class 11 student, Delhi</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light-sec" style="background:#fff;">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">How it works</p>
+      <h2>Three sessions, one clear plan</h2>
+    </div>
+    <div class="process-row">
+      <div class="process-step reveal"><div class="pnum"><svg class="icon"><use href="#i-compass"/></svg></div><h4>Explore</h4><p>A guided conversation and interest assessment to map what genuinely excites your child.</p></div>
+      <div class="process-step reveal"><div class="pnum"><svg class="icon"><use href="#i-check"/></svg></div><h4>Match</h4><p>We shortlist careers and courses that fit their interests, strengths, and the job market ahead.</p></div>
+      <div class="process-step reveal"><div class="pnum"><svg class="icon"><use href="#i-cal"/></svg></div><h4>Plan</h4><p>A written roadmap — subjects, entrance exams, colleges, and timelines — shared with the whole family.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="light-sec" style="background:var(--bg-soft);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">In their words</p>
+      <h2>Students and parents who found their direction</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal"><p>"I was stuck between Commerce and Science. The interest compass actually made it obvious — I'm now prepping for B.Sc Data Science."</p><div class="who"><div class="avatar">A</div><div><div class="name">Aarav Mehta</div><div class="role">Class 12, Pune</div></div></div></div>
+      <div class="test-card reveal"><p>"Disha's counsellor was the first person to tell my son that a design career was a serious, well-paying option, not a backup plan."</p><div class="who"><div class="avatar">S</div><div><div class="name">Sunita Rao</div><div class="role">Parent, Bengaluru</div></div></div></div>
+      <div class="test-card reveal"><p>"The roadmap they gave us had exact exam dates and college cutoffs. It made the next two years feel manageable."</p><div class="who"><div class="avatar">K</div><div><div class="name">Kabir Sharma</div><div class="role">Class 11, Jaipur</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <div>
+      <h3>Book a free 30-minute session — for the student and a parent, together.</h3>
+      <p>No cost, no obligation. You'll leave with a written plan either way.</p>
+    </div>
+    <a href="#/book" class="btn btn-lg" style="background:#fff;color:var(--primary);">Book free session <svg class="icon"><use href="#i-arrow"/></svg></a>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================= PAGE 2: BOOK A SESSION ============================= -->
+<main id="page-book" class="page-section">
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="#/">Home</a> <svg class="icon" style="width:13px;height:13px;"><use href="#i-arrow"/></svg> <span>Book a session</span></div>
+    <p class="eyebrow">Free · 30 minutes · No obligation</p>
+    <h1>Book a free session with a Disha counsellor</h1>
+    <p>Tell us a bit about the student, pick a slot that works, and a qualified counsellor will confirm by phone or email within one working day.</p>
+  </div>
+</section>
+
+<section class="light-sec" style="padding-top:56px;">
+  <div class="wrap">
+    <div class="progress-track">
+      <div class="progress-step">
+        <div class="progress-dot done">1</div>
+        <span class="progress-label active">Session details</span>
+      </div>
+      <div class="progress-line"></div>
+      <div class="progress-step">
+        <div class="progress-dot">2</div>
+        <span class="progress-label">Confirmation</span>
+      </div>
+    </div>
+
+    <div class="form-page-grid">
+      <form class="form-shell" id="bookingForm" novalidate>
+        <div class="field">
+          <label for="studentName">Student's full name</label>
+          <input type="text" id="studentName" name="studentName" placeholder="e.g. Ritika Sharma" required>
+          <p class="form-error" id="err-studentName">Please enter the student's name.</p>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="studentClass">Currently studying in</label>
+            <select id="studentClass" name="studentClass" required>
+              <option value="">Select class</option>
+              <option>Class 9</option>
+              <option>Class 10</option>
+              <option>Class 11</option>
+              <option>Class 12</option>
+              <option>Already in college / gap year</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="e.g. Delhi">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Which area interests the student most?</label>
+          <p class="hint" style="margin-bottom:8px;">You can change this — this is just to help the counsellor prepare.</p>
+          <div class="chip-group" id="interestChips">
+            <div class="chip" data-value="tech">Science & Tech</div>
+            <div class="chip" data-value="commerce">Commerce & Business</div>
+            <div class="chip" data-value="health">Healthcare</div>
+            <div class="chip" data-value="design">Design & Creativity</div>
+            <div class="chip" data-value="humanities">Arts, Humanities & Law</div>
+            <div class="chip" data-value="public">Public Service</div>
+            <div class="chip" data-value="unsure">Not sure yet</div>
+          </div>
+        </div>
+
+        <div class="field-row" style="margin-top:6px;">
+          <div class="field">
+            <label for="parentName">Parent / guardian name</label>
+            <input type="text" id="parentName" name="parentName" placeholder="e.g. Sunita Rao" required>
+            <p class="form-error" id="err-parentName">Please enter a parent or guardian name.</p>
+          </div>
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" required>
+            <p class="form-error" id="err-phone">Please enter a valid 10-digit phone number.</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          <p class="form-error" id="err-email">Please enter a valid email address.</p>
+        </div>
+
+        <div class="field">
+          <label for="prefDate">Preferred date</label>
+          <input type="date" id="prefDate" name="prefDate" required>
+          <p class="form-error" id="err-prefDate">Please choose a preferred date.</p>
+        </div>
+
+        <div class="field">
+          <label>Preferred time slot</label>
+          <div class="slot-grid" id="slotGrid">
+            <div class="slot" data-value="10:00 AM">10:00 AM</div>
+            <div class="slot" data-value="11:30 AM">11:30 AM</div>
+            <div class="slot" data-value="1:00 PM">1:00 PM</div>
+            <div class="slot" data-value="3:00 PM">3:00 PM</div>
+            <div class="slot" data-value="4:30 PM">4:30 PM</div>
+            <div class="slot" data-value="6:00 PM">6:00 PM</div>
+          </div>
+          <p class="form-error" id="err-slot">Please pick a time slot.</p>
+        </div>
+
+        <div class="field">
+          <label for="notes">Anything specific you'd like to discuss? <span class="hint">(optional)</span></label>
+          <textarea id="notes" name="notes" rows="3" placeholder="e.g. deciding between Science and Commerce, or comparing design colleges"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-full">Confirm free session <svg class="icon"><use href="#i-arrow"/></svg></button>
+        <p class="hint" style="text-align:center;margin-top:12px;">By booking, you agree to be contacted by a Disha counsellor about this session.</p>
+      </form>
+
+      <aside class="side-note reveal">
+        <h4 style="margin-bottom:16px;font-size:1.05rem;">What to expect</h4>
+        <div class="sn-row">
+          <svg class="icon"><use href="#i-clock"/></svg>
+          <div><h5>30 minutes, video or phone</h5><p>Whichever is easier for your family — we'll confirm the mode when we call.</p></div>
+        </div>
+        <div class="sn-row">
+          <svg class="icon"><use href="#i-user"/></svg>
+          <div><h5>A qualified counsellor</h5><p>Not a sales rep — someone trained in career and education guidance.</p></div>
+        </div>
+        <div class="sn-row">
+          <svg class="icon"><use href="#i-book"/></svg>
+          <div><h5>You'll leave with a plan</h5><p>A short written summary of career and course options, sent to your email.</p></div>
+        </div>
+        <div class="sn-row">
+          <svg class="icon"><use href="#i-shield"/></svg>
+          <div><h5>No cost, no pressure</h5><p>The session is completely free, with no course or college being sold.</p></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================= PAGE 3: CONFIRMATION ============================= -->
+<main id="page-thankyou" class="page-section">
+
+<section class="light-sec" style="padding-bottom:0;">
+  <div class="wrap">
+    <div class="progress-track" style="justify-content:center;">
+      <div class="progress-step">
+        <div class="progress-dot done">1</div>
+        <span class="progress-label">Session details</span>
+      </div>
+      <div class="progress-line"></div>
+      <div class="progress-step">
+        <div class="progress-dot done"><svg class="icon" style="width:13px;height:13px;stroke:#fff;"><use href="#i-check"/></svg></div>
+        <span class="progress-label active">Confirmation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="confirm-wrap">
+  <div class="confirm-icon"><svg class="icon"><use href="#i-check"/></svg></div>
+  <h1 id="confirmHeading">You're booked, <span id="studentNameOut">there</span>!</h1>
+  <p>A Disha counsellor will call to confirm your slot within one working day. Keep an eye on your phone and inbox.</p>
+
+  <div class="confirm-card">
+    <div class="cc-row"><span class="k">Student</span><span class="v" id="ccName">—</span></div>
+    <div class="cc-row"><span class="k">Class</span><span class="v" id="ccClass">—</span></div>
+    <div class="cc-row"><span class="k">Interest area</span><span class="v" id="ccInterest">—</span></div>
+    <div class="cc-row"><span class="k">Parent / guardian</span><span class="v" id="ccParent">—</span></div>
+    <div class="cc-row"><span class="k">Preferred date</span><span class="v" id="ccDate">—</span></div>
+    <div class="cc-row"><span class="k">Preferred time</span><span class="v" id="ccSlot">—</span></div>
+  </div>
+
+  <div class="next-steps">
+    <div class="ns-row">
+      <div class="ns-num">1</div>
+      <div><h5>We confirm your slot</h5><p>A counsellor calls or emails within one working day to lock in the exact time.</p></div>
+    </div>
+    <div class="ns-row">
+      <div class="ns-num">2</div>
+      <div><h5>You have the session</h5><p>30 minutes, video or phone — bring any questions the student or parent already has.</p></div>
+    </div>
+    <div class="ns-row">
+      <div class="ns-num">3</div>
+      <div><h5>You get a written plan</h5><p>A short roadmap of matched careers, courses, and next steps, sent to your email.</p></div>
+    </div>
+  </div>
+
+  <div class="btn-row" style="justify-content:center;">
+    <a href="#/" class="btn btn-secondary">Back to homepage</a>
+    <a href="#compass" class="btn btn-primary">Explore more careers <svg class="icon"><use href="#i-arrow"/></svg></a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#/" class="logo" style="color:#fff;">
+          <span class="mark"><svg class="icon"><use href="#i-compass"/></svg></span>
+          <span class="logo-text"><span class="logo-name" style="color:#fff;">Disha</span><span class="logo-tagline on-dark">Follow Your Direction</span></span>
+        </a>
+        <p style="margin-top:14px;font-size:0.88rem;max-width:32ch;">Course and career guidance for students and parents, built around interest, aptitude, and where the future is heading.</p>
+      </div>
+      <div><h5>Explore</h5><ul><li><a href="#compass">Interest Finder</a></li><li><a href="#careers">Careers</a></li><li><a href="#courses">Courses</a></li></ul></div>
+      <div><h5>For families</h5><ul><li><a href="#parents">For Parents</a></li><li><a href="#/book">Book a Session</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li>hello@disha.in</li><li>+91 98xxxxxxxx</li><li>Mon–Sat, 10am–7pm</li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Disha Career Guidance. All rights reserved.</span>
+      <span>Made for students and parents across India.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   Shared: mobile nav + scroll reveal
+   ========================================================= */
+var navToggle = document.getElementById('navToggle');
+var navLinks = document.getElementById('navLinks');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', function () {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { navLinks.classList.remove('open'); });
+  });
+}
+
+var io = null;
+function setupReveal(){
+  var revealEls = document.querySelectorAll('.reveal:not(.in)');
+  if ('IntersectionObserver' in window) {
+    if (!io) {
+      io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+    }
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  }
+}
+
+/* =========================================================
+   Course tabs (home page)
+   ========================================================= */
+document.querySelectorAll('.tab-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+    document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* =========================================================
+   Interest Compass (home page)
+   ========================================================= */
+var compassData = {
+  tech: {
+    label: "Science & Tech", tag: "Innovate & build",
+    sub: "You like solving problems, understanding how things work, and building solutions.",
+    careers: [
+      {title:"AI / Software Engineer", course:"B.Tech CSE or AI & ML", future:true},
+      {title:"Data Scientist", course:"B.Sc Data Science / Statistics", future:true},
+      {title:"Biotechnologist", course:"B.Tech / B.Sc Biotechnology", future:false},
+      {title:"Aerospace Engineer", course:"B.Tech Aerospace Engineering", future:false}
+    ]
+  },
+  commerce: {
+    label: "Commerce & Business", tag: "Grow & lead",
+    sub: "You're drawn to numbers, markets, strategy, and how businesses actually run.",
+    careers: [
+      {title:"Chartered Accountant", course:"B.Com (Hons) + CA Foundation", future:false},
+      {title:"Investment Analyst", course:"BBA / B.Com + CFA track", future:false},
+      {title:"Business Analyst", course:"BBA Business Analytics", future:true},
+      {title:"Digital Marketing Lead", course:"BBA Marketing / BMS", future:true}
+    ]
+  },
+  health: {
+    label: "Healthcare & Life Sciences", tag: "Heal & care",
+    sub: "You want a hands-on career centred on people's health and wellbeing.",
+    careers: [
+      {title:"Doctor (MBBS)", course:"MBBS, 5.5 years", future:false},
+      {title:"Nurse Practitioner", course:"B.Sc Nursing", future:false},
+      {title:"Physiotherapist", course:"BPT (Bachelor of Physiotherapy)", future:false},
+      {title:"Public Health Specialist", course:"BSc + MPH", future:true}
+    ]
+  },
+  design: {
+    label: "Design & Creativity", tag: "Imagine & craft",
+    sub: "You think visually and enjoy shaping how things look, feel, and function.",
+    careers: [
+      {title:"UX / Product Designer", course:"B.Des (User Experience)", future:true},
+      {title:"Architect", course:"B.Arch, 5 years", future:false},
+      {title:"Animator / VFX Artist", course:"Animation & VFX program", future:true},
+      {title:"Fashion Designer", course:"B.Des Fashion Design", future:false}
+    ]
+  },
+  humanities: {
+    label: "Arts, Humanities & Law", tag: "Question & argue",
+    sub: "You like reading, debating, and making sense of people and systems.",
+    careers: [
+      {title:"Lawyer", course:"BA LLB (5-year integrated)", future:false},
+      {title:"Journalist", course:"BA Journalism & Mass Comm", future:false},
+      {title:"Psychologist", course:"BA / B.Sc Psychology", future:true},
+      {title:"Civil Services Officer", course:"BA Political Science + UPSC prep", future:false}
+    ]
+  },
+  public: {
+    label: "Public Service & Impact", tag: "Serve & build",
+    sub: "You want a career that visibly improves communities or the environment.",
+    careers: [
+      {title:"IAS / IPS Officer", course:"Any degree + UPSC prep", future:false},
+      {title:"Environmental Scientist", course:"B.Sc Environmental Science", future:true},
+      {title:"Social Entrepreneur", course:"BA Development Studies", future:true},
+      {title:"NGO Programme Manager", course:"Social Work (BSW)", future:false}
+    ]
+  }
+};
+
+var wheel = document.getElementById('wheel');
+var resultPanel = document.getElementById('resultPanel');
+
+function renderCompassResult(key){
+  var d = compassData[key];
+  if(!d) return;
+  var cards = d.careers.map(function (c) {
+    return '<div class="career-item">' +
+      '<div class="c-title">' + c.title + (c.future ? ' <span class="badge">Future-ready</span>' : '') + '</div>' +
+      '<div class="c-course">' + c.course + '</div>' +
+    '</div>';
+  }).join('');
+  resultPanel.innerHTML =
+    '<span class="result-tag"><svg class="icon" style="width:13px;height:13px;"><use href="#i-compass"/></svg>' + d.tag + '</span>' +
+    '<h3>' + d.label + '</h3>' +
+    '<p class="result-sub">' + d.sub + '</p>' +
+    '<div class="career-list">' + cards + '</div>' +
+    '<div class="compass-cta show">' +
+      '<a href="#/book?interest=' + key + '" class="btn btn-primary">Book a session for this path <svg class="icon"><use href="#i-arrow"/></svg></a>' +
+    '</div>';
+}
+
+if (wheel) {
+  wheel.querySelectorAll('.wheel-node').forEach(function (node) {
+    node.addEventListener('click', function () {
+      wheel.querySelectorAll('.wheel-node').forEach(function (n) { n.classList.remove('active'); });
+      node.classList.add('active');
+      renderCompassResult(node.dataset.key);
+    });
+  });
+}
+
+/* =========================================================
+   Booking form (book page)
+   ========================================================= */
+var chips = document.querySelectorAll('#interestChips .chip');
+var selectedInterest = '';
+chips.forEach(function (chip) {
+  chip.addEventListener('click', function () {
+    chips.forEach(function (c) { c.classList.remove('selected'); });
+    chip.classList.add('selected');
+    selectedInterest = chip.dataset.value;
+  });
+});
+
+var slots = document.querySelectorAll('#slotGrid .slot');
+var selectedSlot = '';
+slots.forEach(function (slot) {
+  slot.addEventListener('click', function () {
+    slots.forEach(function (s) { s.classList.remove('selected'); });
+    slot.classList.add('selected');
+    selectedSlot = slot.dataset.value;
+    var err = document.getElementById('err-slot');
+    if (err) err.classList.remove('show');
+  });
+});
+
+var dateInput = document.getElementById('prefDate');
+if (dateInput) {
+  var today = new Date();
+  dateInput.min = today.toISOString().split('T')[0];
+}
+
+function prefillBooking(query){
+  var params = new URLSearchParams(query || '');
+  var pre = params.get('interest');
+  if (pre) {
+    chips.forEach(function (chip) {
+      var match = chip.dataset.value === pre;
+      chip.classList.toggle('selected', match);
+      if (match) selectedInterest = pre;
+    });
+  }
+}
+
+var bookingForm = document.getElementById('bookingForm');
+if (bookingForm) {
+  bookingForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var valid = true;
+
+    var studentName = document.getElementById('studentName').value.trim();
+    toggleError('err-studentName', !studentName); if (!studentName) valid = false;
+
+    var parentName = document.getElementById('parentName').value.trim();
+    toggleError('err-parentName', !parentName); if (!parentName) valid = false;
+
+    var phone = document.getElementById('phone').value.trim();
+    var phoneOk = /^\d{10}$/.test(phone.replace(/\D/g, ''));
+    toggleError('err-phone', !phoneOk); if (!phoneOk) valid = false;
+
+    var email = document.getElementById('email').value.trim();
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    toggleError('err-email', !emailOk); if (!emailOk) valid = false;
+
+    var prefDate = document.getElementById('prefDate').value;
+    toggleError('err-prefDate', !prefDate); if (!prefDate) valid = false;
+
+    toggleError('err-slot', !selectedSlot); if (!selectedSlot) valid = false;
+
+    if (!valid) {
+      var firstError = bookingForm.querySelector('.form-error.show');
+      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    var studentClass = document.getElementById('studentClass').value;
+    var city = document.getElementById('city').value.trim();
+    var notes = document.getElementById('notes').value.trim();
+    var q = new URLSearchParams({
+      name: studentName,
+      class: studentClass,
+      interest: selectedInterest || 'unsure',
+      parent: parentName,
+      date: prefDate,
+      slot: selectedSlot
+    });
+
+    var submitBtn = bookingForm.querySelector('button[type="submit"]');
+    var originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = 'Booking...'; }
+
+    // Send the lead to email via FormSubmit (no backend needed)
+    fetch('https://formsubmit.co/ajax/ankitkg22@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'New Disha counselling session lead - ' + studentName,
+        'Student Name': studentName,
+        'Class': studentClass,
+        'City': city,
+        'Interest Area': selectedInterest || 'unsure',
+        'Parent/Guardian Name': parentName,
+        'Phone': phone,
+        'Email': email,
+        'Preferred Date': prefDate,
+        'Preferred Slot': selectedSlot,
+        'Notes': notes || '-'
+      })
+    })
+    .catch(function (err) {
+      console.error('Lead email send failed:', err);
+    })
+    .finally(function () {
+      window.location.hash = '/thank-you?' + q.toString();
+    });
+  });
+}
+
+function toggleError(id, show){
+  var el = document.getElementById(id);
+  if (el) el.classList.toggle('show', show);
+}
+
+/* =========================================================
+   Confirmation page
+   ========================================================= */
+var interestLabels = {
+  tech: "Science & Tech",
+  commerce: "Commerce & Business",
+  health: "Healthcare & Life Sciences",
+  design: "Design & Creativity",
+  humanities: "Arts, Humanities & Law",
+  public: "Public Service & Impact",
+  unsure: "Not decided yet"
+};
+
+function renderConfirmation(query){
+  var params = new URLSearchParams(query || '');
+  var name = params.get('name');
+  var klass = params.get('class');
+  var interest = params.get('interest');
+  var parent = params.get('parent');
+  var date = params.get('date');
+  var slot = params.get('slot');
+
+  var setText = function (id, val) { var el = document.getElementById(id); if (el) el.textContent = val; };
+
+  if (name) {
+    setText('studentNameOut', name.split(' ')[0]);
+    setText('ccName', name);
+  } else {
+    setText('studentNameOut', 'there');
+    setText('ccName', '—');
+  }
+  setText('ccClass', klass || '—');
+  setText('ccInterest', interest ? (interestLabels[interest] || interest) : '—');
+  setText('ccParent', parent || '—');
+  setText('ccSlot', slot || '—');
+
+  if (date) {
+    var d = new Date(date + 'T00:00:00');
+    setText('ccDate', isNaN(d) ? date : d.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+  } else {
+    setText('ccDate', '—');
+  }
+}
+
+/* =========================================================
+   Router — single file, hash-based navigation between pages
+   #/            -> home
+   #/book        -> booking page (supports ?interest=xxx)
+   #/thank-you   -> confirmation page (supports booking details as query)
+   #anything-else (e.g. #compass) -> stays on home, scrolls to that section
+   ========================================================= */
+function showPage(page){
+  document.querySelectorAll('.page-section').forEach(function (s) { s.classList.remove('active'); });
+  var target = document.getElementById('page-' + page);
+  if (target) target.classList.add('active');
+}
+
+function route(){
+  var hash = window.location.hash || '';
+  var page = 'home';
+  var query = '';
+  var anchor = '';
+
+  if (hash.indexOf('#/book') === 0) {
+    page = 'book';
+    query = hash.split('?')[1] || '';
+  } else if (hash.indexOf('#/thank-you') === 0) {
+    page = 'thankyou';
+    query = hash.split('?')[1] || '';
+  } else if (hash.indexOf('#/') === 0) {
+    page = 'home';
+  } else if (hash.length > 1) {
+    page = 'home';
+    anchor = hash.slice(1);
+  }
+
+  showPage(page);
+  if (page === 'book') prefillBooking(query);
+  if (page === 'thankyou') renderConfirmation(query);
+
+  if (page === 'home' && anchor) {
+    setTimeout(function () {
+      var el = document.getElementById(anchor);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 60);
+  } else {
+    window.scrollTo(0, 0);
+  }
+
+  setupReveal();
+}
+
+window.addEventListener('hashchange', route);
+window.addEventListener('DOMContentLoaded', route);
+</script>
+
+</body>
+</html>
